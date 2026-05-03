@@ -20,3 +20,12 @@ Package: `@aurekai/gemini`
 akai provider gemini tools:print
 akai provider gemini run --proof --semantic-cache
 ```
+
+## Local Runner
+
+```bash
+npm run gemini:demo
+node providers/gemini/run.mjs --dry-run --cache-id gemini-cache-001
+```
+
+To execute a live Gemini API request, set `GEMINI_API_KEY` and omit `--dry-run`.

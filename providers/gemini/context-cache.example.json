@@ -1,0 +1,16 @@
+{
+  "provider": "gemini",
+  "model": "gemini-2.5-pro",
+  "gemini_context_cache_id": "gemini-cache-example-001",
+  "aurekai_semantic_cache_key": "sha256:feature-hash-example",
+  "bridge": {
+    "mode": "token-cache-plus-feature-cache",
+    "proof_outputs": [
+      ".akrun.json",
+      ".akproof.json",
+      ".aktrace.jsonl",
+      ".akfeatures.json",
+      ".akcost.json"
+    ]
+  }
+}

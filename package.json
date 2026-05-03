@@ -16,6 +16,7 @@
     "gateway:demo": "node ./gateway/index.mjs",
     "evals:run": "node ./evals/runner.mjs",
     "openai:demo": "node ./providers/openai/run.mjs --dry-run",
-    "anthropic:demo": "node ./providers/anthropic/run.mjs --dry-run"
+    "anthropic:demo": "node ./providers/anthropic/run.mjs --dry-run",
+    "gemini:demo": "node ./providers/gemini/run.mjs --dry-run"
   }
 }
