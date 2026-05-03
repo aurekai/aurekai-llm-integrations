@@ -1,0 +1,9 @@
+{
+  "provider": "groq",
+  "model": "moonshard-80b-8192",
+  "remote_mcp": {
+    "server_label": "aurekai-mcp",
+    "server_url": "https://mcp.aurekai.ai"
+  },
+  "latency_budget_ms": 800
+}

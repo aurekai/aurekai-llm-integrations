@@ -17,6 +17,13 @@
     "evals:run": "node ./evals/runner.mjs",
     "openai:demo": "node ./providers/openai/run.mjs --dry-run",
     "anthropic:demo": "node ./providers/anthropic/run.mjs --dry-run",
-    "gemini:demo": "node ./providers/gemini/run.mjs --dry-run"
+    "gemini:demo": "node ./providers/gemini/run.mjs --dry-run",
+    "groq:demo": "node ./providers/groq/run.mjs --dry-run",
+    "perplexity:demo": "node ./providers/perplexity/run.mjs --dry-run",
+    "mistral:demo": "node ./providers/mistral/run.mjs --dry-run",
+    "xai:demo": "node ./providers/xai/run.mjs --dry-run",
+    "cohere:demo": "node ./providers/cohere/run.mjs --dry-run",
+    "local:demo": "node ./providers/local/run.mjs --dry-run",
+    "all:demo": "node ./scripts/run-all-demos.mjs"
   }
 }
