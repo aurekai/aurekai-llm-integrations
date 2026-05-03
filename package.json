@@ -14,6 +14,7 @@
   "scripts": {
     "schemas:generate": "node ./scripts/generate-provider-schemas.mjs",
     "gateway:demo": "node ./gateway/index.mjs",
-    "evals:run": "node ./evals/runner.mjs"
+    "evals:run": "node ./evals/runner.mjs",
+    "openai:demo": "node ./providers/openai/run.mjs --dry-run"
   }
 }

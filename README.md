@@ -44,6 +44,7 @@ npm install
 npm run schemas:generate
 npm run gateway:demo
 npm run evals:run
+npm run openai:demo
 ```
 
 ## Core Tool Family

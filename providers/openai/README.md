@@ -20,3 +20,18 @@ Package: `@aurekai/openai`
 akai provider openai tools:print
 akai provider openai run --proof --semantic-cache
 ```
+
+## Local Runner
+
+```bash
+npm run openai:demo
+node providers/openai/run.mjs --dry-run --remote-mcp https://mcp.aurekai.ai
+```
+
+To execute a live Responses API request, set `OPENAI_API_KEY` and omit `--dry-run`.
+
+```bash
+OPENAI_API_KEY=... node providers/openai/run.mjs --input "Run aurekai.doctor and summarize"
+```
+
+Generated proof artifacts are written to `output/openai/` by default.

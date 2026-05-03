@@ -1,0 +1,15 @@
+{
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "remote_mcp": {
+    "server_label": "aurekai-mcp",
+    "server_url": "https://mcp.aurekai.ai"
+  },
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

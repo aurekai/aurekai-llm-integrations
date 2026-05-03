@@ -3,5 +3,6 @@
 Goal: GPT routes tool calls to Aurekai MCP and exports proof bundle.
 
 ```bash
-akai provider openai run --remote-mcp https://mcp.aurekai.ai --proof
+npm run openai:demo
+node providers/openai/run.mjs --dry-run --remote-mcp https://mcp.aurekai.ai
 ```
