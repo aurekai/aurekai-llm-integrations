@@ -1,0 +1,23 @@
+{
+  "providers": [
+    "openai",
+    "anthropic",
+    "gemini",
+    "mistral",
+    "groq",
+    "xai",
+    "perplexity",
+    "cohere",
+    "local"
+  ],
+  "metrics": [
+    "latency_ms",
+    "cost_usd",
+    "cache_hit_rate",
+    "proof_completeness",
+    "retrieval_precision",
+    "feature_drift",
+    "tool_call_success",
+    "schema_compliance"
+  ]
+}

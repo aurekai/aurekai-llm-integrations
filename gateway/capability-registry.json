@@ -1,0 +1,56 @@
+{
+  "openai": {
+    "remote_mcp": true,
+    "function_calling": true,
+    "built_in_tools": true,
+    "batch": true,
+    "structured_outputs": true
+  },
+  "anthropic": {
+    "mcp": true,
+    "tool_use": true,
+    "computer_use": true,
+    "code_execution_with_mcp": true
+  },
+  "gemini": {
+    "function_calling": true,
+    "context_caching": true,
+    "code_execution": true,
+    "batch": true
+  },
+  "mistral": {
+    "function_calling": true,
+    "managed_connectors": true,
+    "document_library": true,
+    "batch": true
+  },
+  "groq": {
+    "remote_mcp": true,
+    "local_tool_calling": true,
+    "built_in_tools": true,
+    "low_latency": true,
+    "batch": true
+  },
+  "xai": {
+    "function_calling": true,
+    "json_schema_tools": true,
+    "long_context": true
+  },
+  "perplexity": {
+    "web_grounded": true,
+    "citations": true,
+    "streaming": true,
+    "structured_outputs": true
+  },
+  "cohere": {
+    "rerank": true,
+    "embeddings": true,
+    "enterprise_controls": true
+  },
+  "local": {
+    "ollama": true,
+    "llama_cpp": true,
+    "vllm": true,
+    "mcp": true
+  }
+}

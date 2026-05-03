@@ -1,0 +1,20 @@
+{
+  "name": "anthropic",
+  "package": "@aurekai/anthropic",
+  "repo_path": "providers/anthropic",
+  "surfaces": [
+    "tool-calling-adapter",
+    "remote-mcp-server",
+    "agent-workflow-template",
+    "batch-evals-connector",
+    "semantic-cache-model-memory-hook"
+  ],
+  "highlight_capability": "mcp",
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

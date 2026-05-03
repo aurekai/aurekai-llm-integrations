@@ -1,0 +1,197 @@
+{
+  "function_declarations": [
+    {
+      "name": "aurekai.doctor",
+      "description": "Run runtime diagnostics and readiness checks.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "deep": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.verify_manifest",
+      "description": "Validate manifest integrity and signatures.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "manifest_path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "manifest_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.inspect_artifact",
+      "description": "Inspect artifact lineage and metadata.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.query_features",
+      "description": "Query semantic feature index.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.semantic_search",
+      "description": "Search semantic index for evidence.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "top_k": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.model_memory_lookup",
+      "description": "Resolve model memory record by key.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memory_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "memory_key"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.export_proof_bundle",
+      "description": "Write a .akproof bundle for the current run.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.run_recipe",
+      "description": "Execute a recipe in the runtime.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "recipe": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "recipe"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.cache_lookup",
+      "description": "Lookup semantic cache by feature hash.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "feature_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "feature_hash"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.cache_put",
+      "description": "Store semantic cache entry.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "feature_hash": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "feature_hash",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "aurekai.feature_gate",
+      "description": "Evaluate a feature gate for safe rollout.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "gate_name": {
+            "type": "string"
+          },
+          "context": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "gate_name"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

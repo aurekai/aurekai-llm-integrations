@@ -1,0 +1,20 @@
+{
+  "name": "local",
+  "package": "@aurekai/local",
+  "repo_path": "providers/local",
+  "surfaces": [
+    "tool-calling-adapter",
+    "remote-mcp-server",
+    "agent-workflow-template",
+    "batch-evals-connector",
+    "semantic-cache-model-memory-hook"
+  ],
+  "highlight_capability": "ollama",
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

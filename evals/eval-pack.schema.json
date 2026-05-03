@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "aurekai-eval-pack",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "requires_tools": {
+      "type": "boolean"
+    },
+    "expected_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "task_id",
+    "provider",
+    "prompt"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "mistral",
+  "package": "@aurekai/mistral",
+  "repo_path": "providers/mistral",
+  "surfaces": [
+    "tool-calling-adapter",
+    "remote-mcp-server",
+    "agent-workflow-template",
+    "batch-evals-connector",
+    "semantic-cache-model-memory-hook"
+  ],
+  "highlight_capability": "managed_connectors",
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

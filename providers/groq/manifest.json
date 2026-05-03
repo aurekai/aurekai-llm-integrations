@@ -1,0 +1,20 @@
+{
+  "name": "groq",
+  "package": "@aurekai/groq",
+  "repo_path": "providers/groq",
+  "surfaces": [
+    "tool-calling-adapter",
+    "remote-mcp-server",
+    "agent-workflow-template",
+    "batch-evals-connector",
+    "semantic-cache-model-memory-hook"
+  ],
+  "highlight_capability": "remote_mcp",
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "cohere",
+  "package": "@aurekai/cohere",
+  "repo_path": "providers/cohere",
+  "surfaces": [
+    "tool-calling-adapter",
+    "remote-mcp-server",
+    "agent-workflow-template",
+    "batch-evals-connector",
+    "semantic-cache-model-memory-hook"
+  ],
+  "highlight_capability": "rerank",
+  "proof_outputs": [
+    ".akrun.json",
+    ".akproof.json",
+    ".aktrace.jsonl",
+    ".akfeatures.json",
+    ".akcost.json"
+  ]
+}

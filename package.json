@@ -1,0 +1,19 @@
+{
+  "name": "@aurekai/llm-integrations",
+  "version": "0.1.0-alpha.0",
+  "description": "Provider-neutral Aurekai LLM integration control plane.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurekai/aurekai-llm-integrations.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "schemas:generate": "node ./scripts/generate-provider-schemas.mjs",
+    "gateway:demo": "node ./gateway/index.mjs",
+    "evals:run": "node ./evals/runner.mjs"
+  }
+}
