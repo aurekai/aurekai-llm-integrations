@@ -1,7 +1,4 @@
-export function buildGroqRequest(input) {
-  return {
-    provider: "groq",
-    input,
-    toolNamespace: "aurekai"
-  };
+import { buildProviderEnvelope } from "../../providers/groq/adapter.mjs";
+export async function buildGroqRequest(input, { model, remoteMcpUrl } = {}) {
+  return buildProviderEnvelope({ input, model, remoteMcpUrl });
 }

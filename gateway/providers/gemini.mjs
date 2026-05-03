@@ -1,7 +1,4 @@
-export function buildGeminiRequest(input) {
-  return {
-    provider: "gemini",
-    input,
-    toolNamespace: "aurekai"
-  };
+import { buildProviderEnvelope } from "../../providers/gemini/adapter.mjs";
+export async function buildGeminiRequest(input, { model, geminiCacheId } = {}) {
+  return buildProviderEnvelope({ input, model, geminiCacheId });
 }

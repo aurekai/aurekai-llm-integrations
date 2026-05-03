@@ -1,7 +1,4 @@
-export function buildMistralRequest(input) {
-  return {
-    provider: "mistral",
-    input,
-    toolNamespace: "aurekai"
-  };
+import { buildProviderEnvelope } from "../../providers/mistral/adapter.mjs";
+export async function buildMistralRequest(input, { model, mcpUrl } = {}) {
+  return buildProviderEnvelope({ input, model, mcpUrl });
 }

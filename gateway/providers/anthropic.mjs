@@ -1,7 +1,4 @@
-export function buildAnthropicRequest(input) {
-  return {
-    provider: "anthropic",
-    input,
-    toolNamespace: "aurekai"
-  };
+import { buildProviderEnvelope } from "../../providers/anthropic/adapter.mjs";
+export async function buildAnthropicRequest(input, { model, mcpConfig } = {}) {
+  return buildProviderEnvelope({ input, model, mcpConfig });
 }

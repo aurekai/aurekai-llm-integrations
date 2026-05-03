@@ -1,7 +1,4 @@
-export function buildOpenaiRequest(input) {
-  return {
-    provider: "openai",
-    input,
-    toolNamespace: "aurekai"
-  };
+import { buildProviderEnvelope } from "../../providers/openai/adapter.mjs";
+export async function buildOpenaiRequest(input, { model, remoteMcpUrl } = {}) {
+  return buildProviderEnvelope({ input, model, remoteMcpUrl });
 }
