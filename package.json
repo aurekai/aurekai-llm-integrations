@@ -1,7 +1,7 @@
 {
   "name": "@aurekai/llm-integrations",
-  "version": "0.1.0-alpha.0",
-  "description": "Provider-neutral Aurekai LLM integration control plane.",
+  "version": "0.8.0-alpha.1",
+  "description": "Provider-neutral Aurekai LLM binding layer — 48 operators, 9 families, 9 providers, canonical tool schema, evals harness.",
   "type": "module",
   "license": "Apache-2.0",
   "repository": {

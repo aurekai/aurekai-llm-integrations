@@ -3,8 +3,983 @@
     {
       "type": "function",
       "function": {
+        "name": "aurekai.runtime.capabilities",
+        "description": "List all capability families, commands, and packs registered in the Aurekai runtime.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "text"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.runtime.status",
+        "description": "Return runtime readiness: API health, binary versions, queue state.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "deep": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.runtime.dispatch",
+        "description": "Dispatch a named command through the Akai runtime router.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "command"
+          ],
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "stdin": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.runtime.enqueue",
+        "description": "Enqueue a job into the Akai job queue and return a job_id.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "command"
+          ],
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "integer"
+            },
+            "payload": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.runtime.gate",
+        "description": "Run a release gate: validate manifest, proof, and SLI checks.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "release_tag"
+          ],
+          "properties": {
+            "release_tag": {
+              "type": "string"
+            },
+            "strict": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.commerce.verify",
+        "description": "Verify an auth token or API credential against the Aurekai gate.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "token"
+          ],
+          "properties": {
+            "token": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.commerce.invoice",
+        "description": "Generate a commerce invoice from metering records for a client and billing period.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "client_id"
+          ],
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "period": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "pdf",
+                "csv"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.commerce.meter_record",
+        "description": "Record a usage metering event for a client and operator.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "client_id",
+            "operator",
+            "units"
+          ],
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "operator": {
+              "type": "string"
+            },
+            "units": {
+              "type": "number"
+            },
+            "unit_type": {
+              "type": "string",
+              "enum": [
+                "seconds",
+                "tokens",
+                "bytes",
+                "requests"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.commerce.ledger_export",
+        "description": "Export the commerce ledger for a client as a structured report.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "start_date": {
+              "type": "string"
+            },
+            "end_date": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.commerce.feature_gate",
+        "description": "Evaluate a feature gate for a client id and return allow/deny with metering impact.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "client_id",
+            "feature"
+          ],
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "feature": {
+              "type": "string"
+            },
+            "context": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.intake.transcribe",
+        "description": "Transcribe an audio file to text using local AI, returning segments with speaker labels.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "audio_path"
+          ],
+          "properties": {
+            "audio_path": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "speaker_diarization": {
+              "type": "boolean"
+            },
+            "output_format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "srt",
+                "vtt",
+                "text"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.intake.ingest",
+        "description": "Ingest a file into the artifact store, normalizing format and computing a content hash.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "file_path"
+          ],
+          "properties": {
+            "file_path": {
+              "type": "string"
+            },
+            "media_type": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.intake.clean_transcript",
+        "description": "Clean and reflow a raw transcript: fix punctuation, remove fillers, normalize speakers.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "transcript"
+          ],
+          "properties": {
+            "transcript": {
+              "type": "string"
+            },
+            "style": {
+              "type": "string",
+              "enum": [
+                "formal",
+                "casual",
+                "verbatim"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.intake.extract_frames",
+        "description": "Extract keyframes from a video at scene boundaries or fixed intervals.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "video_path"
+          ],
+          "properties": {
+            "video_path": {
+              "type": "string"
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "scene",
+                "interval",
+                "keyframe"
+              ]
+            },
+            "interval_s": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.memory.model_pull",
+        "description": "Pull a model from the Aurekai registry or remote source, verifying integrity.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "model_id"
+          ],
+          "properties": {
+            "model_id": {
+              "type": "string"
+            },
+            "quantize": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.memory.fpq_compress",
+        "description": "Compress model weights using FPQ v8 Recursive Lattice-Flow algorithm.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "model_path"
+          ],
+          "properties": {
+            "model_path": {
+              "type": "string"
+            },
+            "target_bits": {
+              "type": "integer",
+              "enum": [
+                2,
+                3,
+                4,
+                6,
+                8
+              ]
+            },
+            "verify": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.memory.vec_search",
+        "description": "Semantic vector search over the Aurekai artifact and memory store.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "top_k": {
+              "type": "integer"
+            },
+            "namespace": {
+              "type": "string"
+            },
+            "min_score": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.memory.sae_activate",
+        "description": "Activate a Sparse Autoencoder gate on a feature vector, returning active feature ids and scores.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "vector"
+          ],
+          "properties": {
+            "vector": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "layer": {
+              "type": "string"
+            },
+            "top_k": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.memory.embed",
+        "description": "Embed a text string into the vector store and return the embedding vector.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "store": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.proof.bundle",
+        "description": "Create a canonical proof bundle (.akproof) for an artifact run, including Merkle hash and lineage.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "run_id"
+          ],
+          "properties": {
+            "run_id": {
+              "type": "string"
+            },
+            "artifacts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sign": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.proof.hash_file",
+        "description": "Compute a canonical SHA-256 + Merkle hash for a file and register it in the proof ledger.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "file_path"
+          ],
+          "properties": {
+            "file_path": {
+              "type": "string"
+            },
+            "algorithm": {
+              "type": "string",
+              "enum": [
+                "sha256",
+                "blake3"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.proof.graph_lineage",
+        "description": "Retrieve the Merkle-rooted artifact lineage graph for a workflow node or artifact id.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "node_id"
+          ],
+          "properties": {
+            "node_id": {
+              "type": "string"
+            },
+            "depth": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.proof.export",
+        "description": "Export a proof bundle as a portable archive suitable for third-party verification.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "proof_id"
+          ],
+          "properties": {
+            "proof_id": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "zip"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.proof.canon_parse",
+        "description": "Parse a document or response into a canonical Aurekai artifact structure.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "content"
+          ],
+          "properties": {
+            "content": {
+              "type": "string"
+            },
+            "content_type": {
+              "type": "string",
+              "enum": [
+                "text",
+                "html",
+                "markdown",
+                "json",
+                "transcript"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.reason.start",
+        "description": "Start a new reasoning session with an initial context and return a session id.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "context"
+          ],
+          "properties": {
+            "context": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.reason.branch",
+        "description": "Create a reasoning branch from an existing session to explore an alternative hypothesis.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "session_id",
+            "hypothesis"
+          ],
+          "properties": {
+            "session_id": {
+              "type": "string"
+            },
+            "hypothesis": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.reason.diff",
+        "description": "Diff two reasoning branches and return a structured comparison with recommendation.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "branch_a",
+            "branch_b"
+          ],
+          "properties": {
+            "branch_a": {
+              "type": "string"
+            },
+            "branch_b": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.wire.tel_listen",
+        "description": "Start a wire capture session to listen for SIP/telephony events on a target endpoint.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "endpoint"
+          ],
+          "properties": {
+            "endpoint": {
+              "type": "string"
+            },
+            "duration_s": {
+              "type": "integer"
+            },
+            "output_dir": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.wire.ingest_pcap",
+        "description": "Ingest a PCAP file and produce a structured SIP event log, call graph, and wire report.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "pcap_path"
+          ],
+          "properties": {
+            "pcap_path": {
+              "type": "string"
+            },
+            "filter": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.wire.report",
+        "description": "Generate a structured wire device report from a capture session or PCAP analysis.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "capture_id"
+          ],
+          "properties": {
+            "capture_id": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "html",
+                "pdf"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.publish.brief",
+        "description": "Generate a structured client brief from a transcript, audio, or content input.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "input"
+          ],
+          "properties": {
+            "input": {
+              "type": "string"
+            },
+            "input_type": {
+              "type": "string",
+              "enum": [
+                "transcript",
+                "artifact_id",
+                "audio_path"
+              ]
+            },
+            "client_name": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "markdown",
+                "json",
+                "docx"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.publish.deliverable",
+        "description": "Pack and produce a client deliverable from one or more artifact inputs.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "artifacts"
+          ],
+          "properties": {
+            "artifacts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "pdf",
+                "docx",
+                "zip",
+                "html"
+              ]
+            },
+            "include_proof": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.publish.distribute",
+        "description": "Distribute a deliverable bundle to a configured channel.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "bundle_id",
+            "channel"
+          ],
+          "properties": {
+            "bundle_id": {
+              "type": "string"
+            },
+            "channel": {
+              "type": "string",
+              "enum": [
+                "email",
+                "cms",
+                "s3",
+                "webhook"
+              ]
+            },
+            "recipient": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.publish.narrate",
+        "description": "Generate a narrated audio brief from a text document using the Akai narration engine.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "content"
+          ],
+          "properties": {
+            "content": {
+              "type": "string"
+            },
+            "voice": {
+              "type": "string"
+            },
+            "speed": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.substrate.space_open",
+        "description": "Open or create a named project space with manifest, job queue, and artifact store.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.substrate.space_put",
+        "description": "Write an artifact or key-value record into a named space.",
+        "parameters": {
+          "type": "object",
+          "required": [
+            "space",
+            "key",
+            "value"
+          ],
+          "properties": {
+            "space": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "value": {}
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "aurekai.substrate.capability_registry",
+        "description": "Query the live capability registry for family, command, and pack information.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "family": {
+              "type": "string"
+            },
+            "search": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
         "name": "aurekai.doctor",
-        "description": "Run runtime diagnostics and readiness checks.",
+        "description": "Run runtime diagnostics and binary readiness checks. Returns pass/fail per component.",
         "parameters": {
           "type": "object",
           "properties": {
@@ -20,17 +995,20 @@
       "type": "function",
       "function": {
         "name": "aurekai.verify_manifest",
-        "description": "Validate manifest integrity and signatures.",
+        "description": "Verify an Aurekai manifest file: schema validity, command bindings, and proof references.",
         "parameters": {
           "type": "object",
-          "properties": {
-            "manifest_path": {
-              "type": "string"
-            }
-          },
           "required": [
             "manifest_path"
           ],
+          "properties": {
+            "manifest_path": {
+              "type": "string"
+            },
+            "strict": {
+              "type": "boolean"
+            }
+          },
           "additionalProperties": false
         }
       }
@@ -39,17 +1017,17 @@
       "type": "function",
       "function": {
         "name": "aurekai.inspect_artifact",
-        "description": "Inspect artifact lineage and metadata.",
+        "description": "Inspect an artifact: return metadata, proof status, lineage summary, and format.",
         "parameters": {
           "type": "object",
+          "required": [
+            "artifact_id"
+          ],
           "properties": {
             "artifact_id": {
               "type": "string"
             }
           },
-          "required": [
-            "artifact_id"
-          ],
           "additionalProperties": false
         }
       }
@@ -58,22 +1036,20 @@
       "type": "function",
       "function": {
         "name": "aurekai.query_features",
-        "description": "Query semantic feature index.",
+        "description": "Query the feature store for active features matching a pattern or model layer.",
         "parameters": {
           "type": "object",
           "properties": {
-            "query": {
+            "pattern": {
               "type": "string"
             },
-            "limit": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
+            "layer": {
+              "type": "string"
+            },
+            "top_k": {
+              "type": "integer"
             }
           },
-          "required": [
-            "query"
-          ],
           "additionalProperties": false
         }
       }
@@ -82,22 +1058,23 @@
       "type": "function",
       "function": {
         "name": "aurekai.semantic_search",
-        "description": "Search semantic index for evidence.",
+        "description": "Semantic search across all Aurekai artifacts, proofs, and memory entries.",
         "parameters": {
           "type": "object",
+          "required": [
+            "query"
+          ],
           "properties": {
             "query": {
               "type": "string"
             },
             "top_k": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 50
+              "type": "integer"
+            },
+            "namespace": {
+              "type": "string"
             }
           },
-          "required": [
-            "query"
-          ],
           "additionalProperties": false
         }
       }
@@ -106,17 +1083,17 @@
       "type": "function",
       "function": {
         "name": "aurekai.model_memory_lookup",
-        "description": "Resolve model memory record by key.",
+        "description": "Look up model memory: FPQ state, KV cache ancestry, and quantization metadata.",
         "parameters": {
           "type": "object",
+          "required": [
+            "model_id"
+          ],
           "properties": {
-            "memory_key": {
+            "model_id": {
               "type": "string"
             }
           },
-          "required": [
-            "memory_key"
-          ],
           "additionalProperties": false
         }
       }
@@ -125,17 +1102,24 @@
       "type": "function",
       "function": {
         "name": "aurekai.export_proof_bundle",
-        "description": "Write a .akproof bundle for the current run.",
+        "description": "Export a portable proof bundle for an artifact id in JSON or ZIP format.",
         "parameters": {
           "type": "object",
+          "required": [
+            "artifact_id"
+          ],
           "properties": {
-            "run_id": {
+            "artifact_id": {
               "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "zip"
+              ]
             }
           },
-          "required": [
-            "run_id"
-          ],
           "additionalProperties": false
         }
       }
@@ -144,20 +1128,23 @@
       "type": "function",
       "function": {
         "name": "aurekai.run_recipe",
-        "description": "Execute a recipe in the runtime.",
+        "description": "Execute a named Aurekai recipe and return the output artifact ids and proof bundle.",
         "parameters": {
           "type": "object",
+          "required": [
+            "recipe"
+          ],
           "properties": {
             "recipe": {
               "type": "string"
             },
-            "input": {
+            "inputs": {
               "type": "object"
+            },
+            "dry_run": {
+              "type": "boolean"
             }
           },
-          "required": [
-            "recipe"
-          ],
           "additionalProperties": false
         }
       }
@@ -166,17 +1153,20 @@
       "type": "function",
       "function": {
         "name": "aurekai.cache_lookup",
-        "description": "Lookup semantic cache by feature hash.",
+        "description": "Look up a semantic cache entry by key hash or natural language query.",
         "parameters": {
           "type": "object",
+          "required": [
+            "key"
+          ],
           "properties": {
-            "feature_hash": {
+            "key": {
+              "type": "string"
+            },
+            "namespace": {
               "type": "string"
             }
           },
-          "required": [
-            "feature_hash"
-          ],
           "additionalProperties": false
         }
       }
@@ -185,21 +1175,27 @@
       "type": "function",
       "function": {
         "name": "aurekai.cache_put",
-        "description": "Store semantic cache entry.",
+        "description": "Store a value in the semantic cache under a key with an optional TTL.",
         "parameters": {
           "type": "object",
+          "required": [
+            "key",
+            "value"
+          ],
           "properties": {
-            "feature_hash": {
+            "key": {
               "type": "string"
             },
             "value": {
-              "type": "object"
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            },
+            "ttl_s": {
+              "type": "integer"
             }
           },
-          "required": [
-            "feature_hash",
-            "value"
-          ],
           "additionalProperties": false
         }
       }
@@ -208,20 +1204,24 @@
       "type": "function",
       "function": {
         "name": "aurekai.feature_gate",
-        "description": "Evaluate a feature gate for safe rollout.",
+        "description": "Evaluate a feature gate for a client id and return allow/deny with metering impact.",
         "parameters": {
           "type": "object",
+          "required": [
+            "client_id",
+            "feature"
+          ],
           "properties": {
-            "gate_name": {
+            "client_id": {
+              "type": "string"
+            },
+            "feature": {
               "type": "string"
             },
             "context": {
               "type": "object"
             }
           },
-          "required": [
-            "gate_name"
-          ],
           "additionalProperties": false
         }
       }
