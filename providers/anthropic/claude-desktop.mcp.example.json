@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "aurekai": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@aurekai/mcp"
+      ],
+      "env": {
+        "AUREKAI_RUNTIME": "akai"
+      }
+    }
+  }
+}

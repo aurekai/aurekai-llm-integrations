@@ -20,3 +20,12 @@ Package: `@aurekai/anthropic`
 akai provider anthropic tools:print
 akai provider anthropic run --proof --semantic-cache
 ```
+
+## Local Runner
+
+```bash
+npm run anthropic:demo
+node providers/anthropic/run.mjs --dry-run --mcp-config providers/anthropic/claude-desktop.mcp.example.json
+```
+
+To execute a live Messages API request, set `ANTHROPIC_API_KEY` and omit `--dry-run`.
