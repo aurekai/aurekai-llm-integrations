@@ -37,11 +37,32 @@ const toFunctionOnly = {
   }))
 };
 
+// Cohere uses tool_name / tool_description / parameter_definitions (object map)
+const toCohere = {
+  tools: canonical.tools.map((tool) => ({
+    name: tool.name,
+    description: tool.description,
+    parameter_definitions: Object.fromEntries(
+      Object.entries(tool.input_schema.properties || {}).map(([k, v]) => [
+        k,
+        {
+          description: v.description || "",
+          type: v.type || "str",
+          required: (tool.input_schema.required || []).includes(k)
+        }
+      ])
+    )
+  }))
+};
+
 fs.writeFileSync("schemas/openai-tools.json", JSON.stringify(toOpenAI, null, 2) + "\n");
 fs.writeFileSync("schemas/anthropic-tools.json", JSON.stringify(toAnthropic, null, 2) + "\n");
 fs.writeFileSync("schemas/gemini-tools.json", JSON.stringify(toGemini, null, 2) + "\n");
 fs.writeFileSync("schemas/mistral-tools.json", JSON.stringify(toFunctionOnly, null, 2) + "\n");
 fs.writeFileSync("schemas/groq-tools.json", JSON.stringify(toFunctionOnly, null, 2) + "\n");
 fs.writeFileSync("schemas/xai-tools.json", JSON.stringify(toFunctionOnly, null, 2) + "\n");
+fs.writeFileSync("schemas/perplexity-tools.json", JSON.stringify(toFunctionOnly, null, 2) + "\n");
+fs.writeFileSync("schemas/cohere-tools.json", JSON.stringify(toCohere, null, 2) + "\n");
+fs.writeFileSync("schemas/local-tools.json", JSON.stringify(toFunctionOnly, null, 2) + "\n");
 
-console.log("Generated provider schemas from canonical tool contract.");
+console.log(`Generated 9 provider schemas from canonical tool contract (${canonical.tools.length} tools).`);
